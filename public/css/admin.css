@@ -1,0 +1,125 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* Reusable Stylings */
+.opBtn {
+  font-size: 18px;
+  font-weight: 600;
+  width: 80px;
+  height: 40px;
+  border-width: 0.2px;
+  border-color: #555;
+  border-radius: 2.5px;
+}
+body {
+  display: flex;
+  min-height: 100vh;
+}
+main {
+  display: flex;
+  width: 100vw;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 200px; /* Adjust the same width as the sidebar */
+  min-height: 100vh; /* Adjust the height as needed */
+  overflow-y: auto;
+}
+#page {
+    display: none;
+}
+.sidebar {
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+
+  width: 250px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar .logo {
+  padding: 20px;
+  text-align: center;
+  background-color: #111;
+  font-size: 24px;
+  font-weight: bold;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  padding: 15px 20px;
+  border-bottom: 1px solid #555;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sidebar ul li:hover {
+  background-color: #555;
+}
+
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+#content {
+  padding: 20px;
+}
+.table-container {
+  width: 75%;
+  margin-top: 75px;
+}
+.truncate-txt{
+  max-width: 100px; /* Adjust the value to fit your desired width */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.truncate-txt.expand {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+}
+
+.table-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.table-header > h2 {
+  height: fit-content;
+}
+.table-header > hr {
+  width: 15%;
+}
+.table-options {
+  background: red;
+}
+.options {
+  float: right;
+  margin-bottom: 15px; 
+}
+.delete {
+  background: #ff0000;
+  color: white;
+}
+.update {
+  background: #32CD32;
+  color: white;
+}
+.custom-thead {
+  background: #ff0000; /* Replace with your desired color */
+}
+.all-rows {
+  background: red;
+  padding-left: 15px;
+}

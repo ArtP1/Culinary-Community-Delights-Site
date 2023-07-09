@@ -1,0 +1,141 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+}
+
+header {
+    background-color: red;
+}
+
+footer {
+    background-color: black;
+    top: 100%;
+    position: sticky;
+    display: flex;
+    justify-content: center;
+}
+#page {
+    display: none;
+}
+.f_container {
+    display: flex;
+    flex-direction: column;
+    width: 1270px;
+    padding-left: 24px;
+    padding-right: 24px;
+    background-color: lightgrey;
+}
+.fcf_content {
+    display: flex;
+    padding: 100px 0px;
+    justify-content: space-around;
+}
+.fcf_left {
+    display: flex;
+    flex-direction: column;
+}
+.inpt_email > div {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    position: relative;
+}
+.inpt_email > div > img {
+    position: absolute;
+    height: 50px;
+}
+.inpt_email > div > input {
+    width: 100%;
+    font-size: 18px;
+    min-height: 69px;
+    padding-left: 17%;
+    border-style: none;
+    border-width: 0px;
+    border-color: #040404;
+    background-color: #fafafa;
+}
+.inpt_email > div > button {
+    height: auto;
+    background-color: black;
+    color: white;
+    position: relative;
+    z-index: 2;
+    max-height: 100%;
+    min-height: 100%;
+    border: 1px solid transparent;
+    padding: 24px 32px;
+}
+.fcs_content {
+    height: fit-content;
+    display: flex;
+    padding: 100px 0px;
+    justify-content: space-around;
+}
+.fcs_left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.fcs_left > h5 {
+    font-size: 18px;
+    margin-bottom: 32px;
+}
+.fxf_categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 560px;
+}
+.fxf_categories > a {
+    text-decoration: none;
+}
+.fxf_categories > a:hover .category_details > h5 {
+    color: #ff8c00;
+}
+.category {
+    display: flex;
+    margin-bottom: 20px;
+}
+.category > img {
+    height: 150px;
+    object-fit: cover;
+}
+.category_details {
+    display: flex;
+    flex-direction: column;
+}
+.category_details > h5 {
+    font-size: 18px;
+    color: black;
+    transition: color 0.5s ease-in-out;
+    font-weight: 800;
+}
+.category_details > p {
+    width: 100px;
+    color: black;
+}
+.fcs_right {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: auto;
+}
+.fcs_right > h5 {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 32px;
+}
+.menu_container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.menu_container > a {
+    margin-bottom: 15px;
+    color: black;
+    text-decoration: none;
+}
