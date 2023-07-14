@@ -24,32 +24,11 @@
                 <th scope="col">Date Created</th>
                 <th scope="col">General (1/0)</th>
                 <th scope="col">Active (1/0)</th>
+                <th><hr></th>
             </tr>
         </thead>
         <tbody>
-            <% for(let i = 0; i < data.categories.length; i++) { %>
-                <tr>   
-                    <% const modifiedDate = new Date(data.categories[i].date_modified) %>
-                    <% const createdDate = new Date(data.categories[i].date_created) %>
-                    <% const simplifiedModifiedDate = `${modifiedDate.getMonth() + 1}/${modifiedDate.getDate()}/${modifiedDate.getFullYear()}` %>
-                    <% const simplifiedCreatedDate = `${createdDate.getMonth() + 1}/${createdDate.getDate()}/${createdDate.getFullYear()}` %>
-
-                    <td><input type="checkbox" value="<%= data.categories[i].id %>"></td> <!-- checkbox -->  
-                    <th><%= data.categories[i].id %></th> <!-- category id -->  
-                    <td><%= data.categories[i].category_name %></td> <!-- category name -->  
-                    <td class="truncate-txt"><%= data.categories[i].description %></td> <!-- category description -->  
-                    <% if(data.categories[i].parent_category_id == undefined) { %>
-                        <td>N/A</td>
-                    <% } else { %>
-                        <td><%= data.categories[i].parent_category_id %></td> <!-- parent category id -->  
-                    <% } %>
-                    <td><%= data.categories[i].is_sub_category %></td> <!-- is subcategory -->  
-                    <td><%= simplifiedModifiedDate %></td> <!-- modified date -->  
-                    <td><%= simplifiedCreatedDate %></td> <!-- date created -->  
-                    <td><%= data.categories[i].is_general %></td> <!-- is general category -->  
-                    <td><%= data.categories[i].is_active %></td> <!-- category is active -->  
-                </tr>
-            <% } %>
+            
         </tbody>
     </table>
 </div>

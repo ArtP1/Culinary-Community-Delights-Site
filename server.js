@@ -4,14 +4,19 @@ const server = express()
 require('dotenv').config()
 server.set('view engine', 'ejs')
 server.use(express.static('public'))
+
+// middleware for parsing request body
 server.use(express.urlencoded({ extended: true }))
+
+// middleware for parsing data in JSON
 server.use(express.json())
 
 
 const { 
     HOST_PORT,
     DB_TABLE_CATEGORIES,
-    DB_TABLE_USERS
+    DB_TABLE_USERS,
+    DB_TABLE_RECIPES
 } = process.env
 const { queryDb } = require('./config/database/utils')
 
@@ -66,9 +71,8 @@ server.get('/admin/dashboard', (req, res) => {
 })
 
 server.get('/admin/users', async (req, res) => {
-    let users = await queryDb(`SELECT * FROM ${DB_TABLE_USERS}`)
 
-    res.render('./layouts/admin-base', {data: {users: users}, 
+    res.render('./layouts/admin-base', {data: {}, 
                                         other: {view: "admin_users", page: "Users", admin_type: "admin"}})
 })
 
@@ -79,10 +83,8 @@ server.get('/admin/recipes', (req, res) => {
 })
 
 server.get('/admin/categories', async (req, res) => { // CATEGORIES
-    let categories = await queryDb(`SELECT * FROM ${DB_TABLE_CATEGORIES}`)
 
-
-    res.render('./layouts/admin-base', {data: {categories: categories}, 
+    res.render('./layouts/admin-base', {data: {}, 
                                         other: {view: "admin_categories",  page: "Categories", admin_type: "admin"}})
 })
 
@@ -133,36 +135,51 @@ server.get('/api/categories/:types', async (req, res) => {
     }
 })
 
-// GET request to fetch all users
-server.get('/api/users', async (req, res) => {
-    try {
-        const users = await queryDb(`SELECT * FROM ${DB_TABLE_USERS}`);
+// GET request to fetch all 
+server.get('/api/:type', async (req, res) => {
+    let dataType;
+    const type = req.params.type;
 
-        res.send(users)
+    try {
+        switch(type) {
+            case 'users':
+                dataType = await queryDb(`SELECT * FROM ${DB_TABLE_USERS}`)
+                break;
+            case 'categories':
+                dataType = await queryDb(`SELECT * FROM ${DB_TABLE_CATEGORIES}`)
+                break;
+            case "recipes":
+                dataType = await queryDb(`SELECT * FROM ${DB_TABLE_RECIPES}`)
+                break;
+            default:
+                throw new Error('Invalid data type');
+        }
+
+        res.send(dataType)
     } catch (err) {
-        res.status(500).json({errpr: "Internal server error"})
+        res.status(500).json({err: "Internal server error"})
     }
 })
 
 
 // POST request to add a new user
-server.post('/api/users', async (req, res) => {
-    try {
-        const { username, email, password, last_login } = req.body
+// server.post('/api/users', async (req, res) => {
+//     try {
+//         const { username, email, password, last_login } = req.body
 
-        const newUser = await queryDb(`INSERT INTO ${DB_TABLE_USERS}
-                                       (username, email, password, last_login)
-                                       VALUES(? , ?, ?, ?)`, [username, email, password, last_login])
+//         const newUser = await queryDb(`INSERT INTO ${DB_TABLE_USERS}
+//                                        (username, email, password, last_login)
+//                                        VALUES(? , ?, ?, ?)`, [username, email, password, last_login])
 
-        res.json(newUser)
-    } catch (err) {
-        res.status(500).json({error: "Internal servar error"})
-    }
-});
+//         res.json(newUser)
+//     } catch (err) {
+//         res.status(500).json({error: "Internal servar error"})
+//     }
+// });
 
 
-// PUT request to update an existing user
-server.put('/api/users/:id', async (req, res) => {
+// UPDATE request to update an existing row from table x
+server.get('/api/:type/update', async (req, res) => {
     try {
         const { username, email, password, first_name, last_name, 
                 profile_picture, biography, country, last_updated } = req.body
@@ -177,20 +194,52 @@ server.put('/api/users/:id', async (req, res) => {
     } catch(err) {
         res.status(500).json({ error: "Internal server error"})
     }
+
+    let rowId = req.query.rowId;
+    try {
+        switch(type) {
+            case 'users':
+                dataType = await queryDb(`UPDATE ${DB_TABLE_USERS}
+                                          SET username = ?, email = ?, password = ?, first_name = ?, 
+                                          last_name = ?, profile_picture = ?, biography = ?, country = ?, last_updated = ?
+                                          WHERE id = ?`, [username, email, password, first_name, last_name, profile_picture, biography, country, last_updated, userId])
+                break;
+            case 'categories':
+                dataType = await queryDb(`DELETE FROM ${DB_TABLE_CATEGORIES}
+                                          WHERE id = ?`, [rowId])
+                break;
+            default:
+                throw new Error('Invalid data type');
+        }
+    } catch (err) {
+        res.status(500).json({err: "Internal server error"})
+    }
 });
 
 
-// DELETE request to delete an existing user
-server.delete('/api/users/:id', async (req, res) => {
+// DELETE request to delete an existing row from table x
+server.get('/api/:type/delete', async (req, res) => {
+    let rowId = req.query.rowId;
+    let type = req.params.type;
+    let dataType;
+
     try {
-        const userId = req.params.id;
+        switch(type) {
+            case 'users':
+                dataType = await queryDb(`DELETE FROM ${DB_TABLE_USERS}
+                                          WHERE id = ?`, [rowId])
+                break;
+            case 'categories':
+                dataType = await queryDb(`DELETE FROM ${DB_TABLE_CATEGORIES}
+                                          WHERE id = ?`, [rowId])
+                break;
+            default:
+                throw new Error('Invalid data type');
+        }
 
-        const deletedUser = await queryDb(`DELETE FROM ${DB_TABLE_USERS}
-                                           WHERE id = ?`, [userId])
-
-        res.send(deletedUser);
-    } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
+        res.redirect('/admin/users')
+    } catch (err) {
+        res.status(500).json({err: "Internal server error"})
     }
 });
 

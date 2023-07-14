@@ -123,3 +123,20 @@ main {
   background: red;
   padding-left: 15px;
 }
+.tb_actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tb_actions > a {
+  margin: 5px;
+}
+.tb_action_btns {
+  height: 20px;
+  object-fit: cover;
+}
+#update_btn {
+  height: 18px;
+  margin-bottom: 2.5px;
+  object-fit: cover;
+}

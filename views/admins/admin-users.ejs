@@ -23,44 +23,11 @@
                 <th scope="col">Profile Picture</th>
                 <th scope="col">Date Created</th>
                 <th scope="col">Last Activity</th>
+                <th scope="col"><hr></th>
             </tr>
         </thead>
         <tbody>
-            <% for(let i = 0; i < data.users.length; i++) { %>
-                <tr id="row-<%= i + 1 %>">   
-                    <td><input type="checkbox" value="<%= data.users[i].id %>"></td> <!-- checkbox -->  
-                    <th><%= data.users[i].id %></th> <!-- user id -->  
-                    <td><%= data.users[i].username %></td> <!-- username -->  
-                    <td><%= data.users[i].first_name %></td> <!-- first name -->  
-                    <td><%= data.users[i].last_name %></td> <!-- last name -->  
-
-                    <% if(data.users[i].biography == null)  { %>
-                        <td>N/A</td>
-                    <% } else { %>
-                        <td class="truncate-txt"><%= data.users[i].biography %></td> <!-- user biography -->
-                    <% } %>
-                      
-                    <% if(data.users[i].profile_picture == null)  { %>
-                        <td>N/A</td>
-                    <% } else { %>
-                        <td class="truncate-txt"><%= data.users[i].profile_picture %></td> <!-- user profile picture --> 
-                    <% } %>
-
-                    <% const dateCreated = new Date(data.users[i].created_at) %>
-                    <% const simplifiedDateCreated = `${dateCreated.getMonth() + 1}/${dateCreated.getDate()}/${dateCreated.getFullYear()}` %>
-
-                    <td><%= simplifiedDateCreated %></td> <!-- date created -->                      
-                    
-                    <% if(data.users[i].last_login != null) { %>
-                        <% const lastActivityDate = new Date(data.users[i].last_login) %>
-                        <% simplifiedLastActivityDate = `${lastActivityDate.getMonth() + 1}/${lastActivityDate.getDate()}/${lastActivityDate.getFullYear()}` %>
-                        <td><%= simplifiedLastActivityDate %></td>
-                    <% } else { %>
-                        <td>No Activity</td>
-                    <% } %>
-
-                </tr>
-            <% } %>
+            
         </tbody>
     </table>
 </div>
