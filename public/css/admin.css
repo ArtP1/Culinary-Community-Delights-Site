@@ -22,7 +22,7 @@ main {
   width: 100vw;
   flex-direction: column;
   align-items: center;
-  margin-left: 200px; /* Adjust the same width as the sidebar */
+  margin-left: 200px;
   min-height: 100vh; /* Adjust the height as needed */
   overflow-y: auto;
 }
@@ -72,7 +72,6 @@ main {
   padding: 20px;
 }
 .table-container {
-  width: 75%;
   margin-top: 75px;
 }
 .truncate-txt{
@@ -82,7 +81,18 @@ main {
   text-overflow: ellipsis;
   cursor: pointer;
 }
-
+.truncate-hd {
+  max-width: 80px; /* Adjust the value to fit your desired width */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.truncate-hd.expand {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+}
 .truncate-txt.expand {
   white-space: normal;
   overflow: visible;

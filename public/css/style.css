@@ -7,10 +7,220 @@ body {
     min-height: 100vh;
 }
 
-header {
+
+/* Header Styling */
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    width: 100%;
     background-color: red;
+    max-width: 1350px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #fff;
+    box-shadow: 0 6px 28px 0 rgba(0, 0, 0, 0.06);
+}
+.header-container {
+    max-width: 1350px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 32px;
+    padding-left: 32px;
+}
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.left-hd {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+}
+.left-hd > a {
+    color: black;
+    display: flex;
+    height: fit-content;
+    align-items: center;
+    margin-right: 30px;
+    text-decoration: none;
+}
+.left-hd > a > img {
+    height: 40px;
+}
+.left-hd > a > span {
+    font-weight: 600;
+    font-size: 25px;
+}
+.left-hd > nav {
+    display: flex;
+    list-style: none;
+}
+.left-hd > nav > a {
+    margin-right: 15px;
+    color: black;
+    text-decoration: none;
+}
+.img-container {
+    width: 50px; /* Adjust the size of the container as needed */
+    height: 50px;
+    border-radius: 50%; /* Create a circular shape */
+    overflow: hidden; /* Clip the content to the shape */
+}
+.img-container > img {
+    width: 100%; /* Make the image fill the container */
+    height: 100%;
+    object-fit: cover; 
 }
 
+.right-hd {
+    display: flex;
+    align-items: center;
+}
+.right-hd > div {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.right-hd > div > img {
+    cursor: pointer;
+    position: absolute;
+    height: 30px;
+    margin-left: 15px;
+    padding-top: 2px;
+}
+.right-hd > div > input {
+    min-height: 56px;
+    margin-right: 32px;
+    min-width: 350px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 52px;
+    border: 1px none transparent;
+    background-color: #fafafa;
+    color: #040404;
+    font-size: 17px;
+    line-height: 1.2;
+    text-transform: lowercase;
+}
+
+
+/* Home */
+.first-sect {
+    display: flex;
+    height: 1225px;
+}
+.f-left-side {
+    padding-left: 100px;
+    width: 50%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.fls-wrapper {
+    margin-top: 215px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-items: center;
+    height: fit-content;
+}
+.fls-content {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+.fls-content > hr {
+    width: 22%;
+}
+.fls-content > h1 {
+    font-size: 55px;
+}
+.fls-btns {
+    display: flex;
+}
+.fls-btns > a {
+    margin-right: 25px;
+}
+.btw-btns { /* Black to White buttons */
+    position: relative;
+    overflow: hidden;
+    padding: 24px 42px;
+    border: 1px solid transparent;
+    background-color: black;
+    color: #fff;
+    font-size: 18px;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    text-transform: lowercase;
+}
+
+.wtb-btns { /* White to Black buttons */
+    position: relative;
+    overflow: hidden;
+    padding: 24px 42px;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    font-size: 18px;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    text-transform: lowercase;
+}
+.f-right-side {
+    padding-right: 100px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 140, 0, 0.2);
+}
+.frs-wrapper {
+    margin-top: 210px;
+    background-color:aqua;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.frs-content {
+    position: absolute;
+    left: -60px;
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+}
+.frs-left-imgs {
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+}
+.frs-left-imgs > img {
+    height: 390px;
+    margin-bottom: 30px;
+    width: 420px;
+    object-fit: cover;
+}
+.frs-right-imgs {
+    display: flex;
+    margin-top: 120px;
+    flex-direction: column;
+}
+.frs-right-imgs > img {
+    height: 390px;
+    width: 420px;
+    margin-bottom: 30px;
+    object-fit: cover;
+}
+/* Footer Styling */
 footer {
     background-color: black;
     top: 100%;
@@ -139,3 +349,8 @@ footer {
     color: black;
     text-decoration: none;
 }
+
+
+
+
+

@@ -36,6 +36,7 @@ server.get('/about', (req, res) => {
 
 server.get('/recipes', (req, res) => {
     let recipes = `SELECT * FROM ${DB_TABLE_RECIPES} WHERE is_active = 1`
+    
     res.render('./layouts/user-base', {data: {}, 
                                        other: {view: "user_recipes"}})
 })

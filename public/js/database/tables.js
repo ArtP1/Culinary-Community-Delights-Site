@@ -5,9 +5,8 @@
 */
 
 
-var tableBody = document.querySelector("tbody");
-
-
+const tableBody = document.querySelector("tbody");
+const tableHeaderRow = document.querySelector('thead tr');
 
 // Helper Functions
 function isNullorEmpty(value) {
@@ -91,7 +90,7 @@ async function renderRecipesTable() {
     let cell = document.createElement('td');
 
     tableRow.style.width = '100%';
-    tableRow.style.height = '100%';
+    tableRow.style.height = '500px';
 
     cell.setAttribute('colspan', '22');
     cell.textContent = 'No data available';
@@ -166,8 +165,16 @@ tableBody.addEventListener("click", function (event) { // minimizes extensive ce
   }
 });
 
+tableHeaderRow.addEventListener('click', function(event) {
+  // Check if the clicked element is a th tag and has more than one word
+  if (event.target.matches('.truncate-hd')) {
+    event.target.classList.toggle('expand');
+  }
+});
 
 
+
+// Main Function
 function renderTableBasedOnPage() {
   let page = document.getElementById('page').value;
 
