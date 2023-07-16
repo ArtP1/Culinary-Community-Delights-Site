@@ -6,7 +6,12 @@
 body {
     min-height: 100vh;
 }
-
+/* Reusable Styling */
+.custom-hrs {
+    border: none; 
+    height: 2px; 
+    background-color: #FF9E3D; 
+}
 
 /* Header Styling */
 .header {
@@ -66,6 +71,10 @@ body {
     margin-right: 15px;
     color: black;
     text-decoration: none;
+    transition: color 350ms ease;
+}
+.left-hd > nav > a:hover {
+    color: #FF9E3D  ;
 }
 .img-container {
     width: 50px; /* Adjust the size of the container as needed */
@@ -112,14 +121,16 @@ body {
 }
 
 
-/* Home */
+/* ------------------------------ Home ------------------------------ */
+/* First Section */
 .first-sect {
     display: flex;
-    height: 1225px;
+    height: 1185px;
 }
 .f-left-side {
     padding-left: 100px;
     width: 50%;
+    height: auto;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -182,11 +193,10 @@ body {
     width: 50%;
     display: flex;
     flex-direction: column;
-    background-color: rgba(255, 140, 0, 0.2);
+    background-color: rgba(255, 140, 0, 0.08);
 }
 .frs-wrapper {
     margin-top: 210px;
-    background-color:aqua;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -200,11 +210,13 @@ body {
 }
 .frs-left-imgs {
     display: flex;
+    width: fit-content;
+    height: fit-content;
     flex-direction: column;
     margin-right: 30px;
 }
 .frs-left-imgs > img {
-    height: 390px;
+    height: 370px;
     margin-bottom: 30px;
     width: 420px;
     object-fit: cover;
@@ -215,12 +227,191 @@ body {
     flex-direction: column;
 }
 .frs-right-imgs > img {
-    height: 390px;
+    height: 370px;
     width: 420px;
     margin-bottom: 30px;
     object-fit: cover;
 }
-/* Footer Styling */
+/* Second Section */
+.second-sect {
+    padding-top: 135px;
+    padding-bottom: 135px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ss-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    text-align: center;
+}
+.ss-categories {
+    margin-top: 50px;
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+}
+.ss-categories > a { 
+    display: flex;
+    width: 240px;
+    text-decoration: none;
+    height: fit-content;
+    color: black;
+    flex-direction: column;
+    margin-right: 50px;
+    margin-left: 50px;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s ease;
+}
+.ss-categories > a:hover {
+    transform: scale(0.95);
+    transition: transform 0.4s ease;
+}
+.ss-categories > a:hover hr {
+    width: 45%;
+    transition: width 0.4s ease;
+}
+.ss-categories > a > figure {
+    padding: 50px;
+    display: flex;
+    background-color: rgba(255, 140, 0, 0.08);
+    justify-content: center;
+    
+}
+.ss-categories > a > figure > img {
+    height: 140px;
+    object-fit: cover;
+}
+.ss-categories > a > hr {
+    transition: width 0.4s ease;
+    width: 15%;
+    border: none; 
+    height: 2px; 
+    background-color: #FF9E3D; 
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+.ss-categories > a  > h3 {
+    font-size: 22px;
+    margin-bottom: 16px;
+    line-height: 1.2727272727272727;
+    font-weight: 500;
+}
+.ss-categories > a > p {
+    color: #5f5f5f;
+    width: 89%;
+    text-align: center;
+}
+/* Third Section */
+.third-sect {
+    padding-top: 200px;
+    height: max-content;
+    flex-direction: column;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 140, 0, 0.08);
+}
+.third-sect > button {
+    padding: 24px 42px;
+    border: 1px solid transparent;
+    background-color: black;
+    color: #fff;
+    font-size: 18px;
+    line-height: 1;
+    margin-bottom: 100px;
+}
+.ts-wrapper {
+    width: 1400px; 
+    display: flex;
+    margin-bottom: 275px;
+    flex-direction: column;
+}
+.ts-heading {
+    display: flex;
+    justify-content: space-between;
+}
+.tsh-btns {
+    display: flex;
+}
+.tsh-btns > button {
+    margin-right: 15px;
+    margin-left: 15px;
+    font-size: 25px;
+    border: 1px solid #000;
+    width: 80px;
+    cursor: pointer;
+    color: white;
+    font-size: 40px;
+    background-color: black;
+}
+.feat-recipes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 45px;
+}
+.ft-recipe {
+    position: relative;
+}
+.ft-recipe-img {
+    position: relative;
+}
+.ft-recipe-img > img {
+    height: 320px;
+    width: 580px;
+    object-fit: cover;
+}
+.ft-recipe-img > button {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    padding: 16px 22px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    z-index: 2;
+    border: none;
+}
+.ft-recipe-dscrp {
+    bottom: -215.5px;
+    position: absolute;
+    display: flex;
+    padding: 0px 48px 40px;
+    background-color: white;
+    width: 76%;
+    flex-direction: column;
+}
+.ft-recipe-dscrp > p {
+    color: #5f5f5f;
+}
+.ft-recipe-dscrp > hr {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.ft {
+    transition: width 0.4s ease;
+    width: 8%;
+    border: none; 
+    height: 2px; 
+    background-color: #FF9E3D; 
+}
+.ft-recipe-details {
+    display: flex;
+}
+.ft-recipe-details > div {
+    margin-right: 10px;
+    display: flex;
+}
+.ft-recipe-details > div > img {
+    height: 25px;
+    margin-right: 5px;
+}
+/* ------------------------------ UI Dynammic Footer Styling ------------------------------ */
 footer {
     background-color: black;
     top: 100%;
@@ -304,13 +495,13 @@ footer {
     text-decoration: none;
 }
 .fxf_categories > a:hover .category_details > h5 {
-    color: #ff8c00;
+    color: #FF9E3D  ;
 }
-.category {
+.fxf-category {
     display: flex;
     margin-bottom: 20px;
 }
-.category > img {
+.fxf-category > img {
     height: 150px;
     object-fit: cover;
 }
@@ -321,7 +512,7 @@ footer {
 .category_details > h5 {
     font-size: 18px;
     color: black;
-    transition: color 0.5s ease-in-out;
+    transition: color 0.4s ease-in-out;
     font-weight: 800;
 }
 .category_details > p {
