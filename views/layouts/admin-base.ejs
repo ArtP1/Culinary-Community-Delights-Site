@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/admins/partials/sidenav.css">
+    <link rel="stylesheet" href="/css/admins/database/tables.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
-    <%- include('../admins/partials/admin-sidenav.ejs') %>
+    <%- include('../admins/partials/sidenav.ejs') %>
     
 
     <input type="text" value="<%= other.view %>" id="page">
@@ -19,27 +20,27 @@
         <!-- Conditionals -->
         <% if(other.view == "admin_login") { %> 
 
-            <%- include('../admins/admin-login.ejs') %>
+            <%- include('../admins/login.ejs') %>
     
         <% } else if(other.view == "admin_dashboard") { %> 
     
-            <%- include('../admins/admin-dashboard.ejs') %>
+            <%- include('../admins/dashboard.ejs') %>
     
         <% } else if(other.view == "admin_categories") { %>
     
-            <%- include('../admins/admin-categories.ejs') %>
+            <%- include('../admins/categories.ejs') %>
     
         <% } else if(other.view == "admin_users") { %> 
     
-            <%- include('../admins/admin-users.ejs') %>
+            <%- include('../admins/users.ejs') %>
     
         <% } else if(other.view == "admin_recipes") { %> 
             
-            <%- include('../admins/admin-recipes.ejs') %>
+            <%- include('../admins/recipes.ejs') %>
 
         <% } else { %>
     
-            <%- include('../admins/admin-dashboard.ejs') %>
+            <%- include('../admins/dashboard.ejs') %>
     
         <% } %>
     </main>
@@ -47,7 +48,7 @@
 
 
 
-    <%- include('../admins/partials/admin-footer.ejs') %>
+    <%- include('../admins/partials/footer.ejs') %>
     <script src="/js/database/tables.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>

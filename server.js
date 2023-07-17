@@ -42,8 +42,9 @@ server.get('/recipes', (req, res) => {
 })
 
 server.get('/recipes/:category', (req, res) => {
+    let category = req.params.category;
 
-    res.render('./layouts/user-base', {data: {}, 
+    res.render('./layouts/user-base', {data: {category: category}, 
                                        other: {view: "user_recipes"}})
 })
 

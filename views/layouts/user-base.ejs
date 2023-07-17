@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/users/partials/header.css">
+    <link rel="stylesheet" href="/css/users/home.css">
+    <link rel="stylesheet" href="/css/users/partials/footer.css">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> -->
 </head>
 <body>
-    <%- include('../users/partials/user-header.ejs') %>
+    <%- include('../users/partials/header.ejs') %>
 
 
         <input type="text" value="<%= other.view %>" id="page">
@@ -20,23 +22,23 @@
             <!-- Conditionals -->
             <% if(other.view == "user_home") { %> 
 
-                <%- include('../users/user-home.ejs') %>
+                <%- include('../users/home.ejs') %>
 
             <% } else if(other.view == "user_recipes") { %> 
 
-                <%- include('../users/user-recipes.ejs') %>
+                <%- include('../users/recipes.ejs') %>
 
             <% } else if(other.view == "user_about") { %>
 
-                <%- include('../users/user-bout.ejs') %>
+                <%- include('../users/about.ejs') %>
             
-            <% } else if(other.view == "user-community") { %>
+            <% } else if(other.view == "community") { %>
 
-                <%- include('../users/user-community.ejs') %>
+                <%- include('../users/community.ejs') %>
 
             <% } else { %>
 
-                <%- include('../users/user-home.ejs') %>
+                <%- include('../users/home.ejs') %>
                 
             <% } %>
         </main>
@@ -44,7 +46,7 @@
 
 
 
-    <%- include('../users/partials/user-footer.ejs') %>
+    <%- include('../users/partials/footer.ejs') %>
     <script src="/js/users.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>

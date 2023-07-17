@@ -1,0 +1,116 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* Reusable Stylings */
+.opBtn {
+  font-size: 18px;
+  font-weight: 600;
+  width: 80px;
+  height: 40px;
+  border-width: 0.2px;
+  border-color: #555;
+  border-radius: 2.5px;
+}
+body {
+  display: flex;
+  min-height: 100vh;
+}
+main {
+  display: flex;
+  width: 100vw;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 200px;
+  min-height: 100vh; /* Adjust the height as needed */
+  overflow-y: auto;
+}
+#page {
+    display: none;
+}
+
+
+#content {
+  padding: 20px;
+}
+.table-container {
+  margin-top: 75px;
+}
+.truncate-txt{
+  max-width: 100px; /* Adjust the value to fit your desired width */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.truncate-hd {
+  max-width: 80px; /* Adjust the value to fit your desired width */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.truncate-hd.expand {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+}
+.truncate-txt.expand {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+}
+
+.table-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.table-header > h2 {
+  height: fit-content;
+}
+.table-header > hr {
+  width: 15%;
+}
+.table-options {
+  background: red;
+}
+.options {
+  float: right;
+  margin-bottom: 15px; 
+}
+.delete {
+  margin-right: 10px;
+  background: #ff0000;
+  color: white;
+}
+.add {
+  background: #32CD32;
+  color: white;
+}
+.custom-thead {
+  background: #ff0000; /* Replace with your desired color */
+}
+.all-rows {
+  background: red;
+  padding-left: 15px;
+}
+.tb_actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tb_actions > a {
+  margin: 5px;
+}
+.tb_action_btns {
+  height: 20px;
+  object-fit: cover;
+}
+#edit-btn {
+  height: 18px;
+  margin-bottom: 2.5px;
+  object-fit: cover;
+}

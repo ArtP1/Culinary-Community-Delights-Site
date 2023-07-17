@@ -1,0 +1,53 @@
+.sidebar {
+  background-color: #1a1a1a; /* Darker background color for the sidebar */
+  color: #fff;
+  position: fixed;
+  top: 0; /* Ensure the sidebar sticks to the top */
+  left: 0; /* Ensure the sidebar sticks to the left */
+  width: 250px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  z-index: 100; /* Ensure it appears above other elements */
+}
+
+.sidebar .logo {
+  padding: 20px;
+  text-align: center;
+  background-color: #111;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff; /* Add a text color to the logo */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  padding: 15px 20px;
+  border-bottom: 1px solid #555;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sidebar ul li:last-child {
+  border-bottom: none; /* Remove the bottom border from the last list item */
+}
+
+.sidebar ul li:hover {
+  background-color: #555;
+}
+
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  display: block; /* Make the links take the full space of the list item */
+}
+
+.sidebar ul li a:hover {
+  color: #f0f0f0; /* Change link color on hover for better contrast */
+}
