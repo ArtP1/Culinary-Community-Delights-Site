@@ -1,5 +1,4 @@
 footer {
-    background-color: black;
     top: 100%;
     position: sticky;
     display: flex;
@@ -14,7 +13,6 @@ footer {
     width: 1270px;
     padding-left: 24px;
     padding-right: 24px;
-    background-color: lightgrey;
 }
 .fcf_content {
     display: flex;
@@ -24,6 +22,9 @@ footer {
 .fcf_left {
     display: flex;
     flex-direction: column;
+}
+.fcf_left > p {
+    width: 70%;
 }
 .inpt_email > div {
     display: flex;
@@ -75,7 +76,7 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    width: 560px;
+    width: 450px;
 }
 .fxf_categories > a {
     text-decoration: none;
@@ -85,10 +86,18 @@ footer {
 }
 .fxf-category {
     display: flex;
+    align-items: center;
     margin-bottom: 20px;
 }
-.fxf-category > img {
-    height: 150px;
+.fxf-category > figure {
+    padding: 10px;
+    height: fit-content;
+    display: flex;
+    background-color: rgba(255, 140, 0, 0.08);
+    justify-content: center;
+}
+.fxf-category > figure > img {
+    height: 60px;
     object-fit: cover;
 }
 .category_details {
@@ -102,7 +111,7 @@ footer {
     font-weight: 800;
 }
 .category_details > p {
-    width: 100px;
+    width: 120px;
     color: black;
 }
 .fcs_right {
@@ -126,8 +135,19 @@ footer {
     color: black;
     text-decoration: none;
 }
-
-
-
-
-
+.fst-content {
+    padding-top: 32px;
+    padding-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+.fst-right-socials {
+    display: flex;
+    justify-content: space-between;
+}
+.fst-right-socials > a {
+    margin-right: 10px;
+}
+.fst-right-socials > a > img {
+     height: 30px;
+}
