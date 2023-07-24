@@ -22,13 +22,37 @@ const { queryDb } = require('./config/database/utils')
 
 
 // USER ROUTES ------------------------------------------------
-server.get('/', (req, res) => {
+server.get('/', (req, res) => { // USER HOME PAGE
 
+
+    
     res.render('./layouts/user-base', {data: {}, 
                                        other: {view: "user_home"}})
 })
 
-server.get('/about', (req, res) => {
+server.get('/signup', (req, res) => { // USER SIGNUP PAGE
+
+
+
+    res.render('./layouts/user-authentication-base', {data: {}, 
+                                                      other: {form_header: "Create Account",
+                                                              third_party_name: "Sign Up",
+                                                              view: "user_signup",
+                                                              page_header: "Discover a treasure trove of recipes shared by food enthusiasts from around the globe"}})
+})
+
+server.get('/login', (req, res) => { // USER LOGIN PAGE
+
+
+
+    res.render('./layouts/user-authentication-base', {data: {}, 
+                                                      other: {form_header: "Log in",
+                                                              third_party_name: "Sign in",
+                                                              view: "user_login",
+                                                              page_header: "Discover a treasure trove of recipes shared by food enthusiasts from around the globe"}})
+})
+
+server.get('/about', (req, res) => { 
 
     res.render('./layouts/user-base', {data: {}, 
                                        other: {view: "user_about"}})

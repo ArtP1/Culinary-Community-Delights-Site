@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/users/signup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div class="leftside">
+            <div class="site-logo-wrapper">
+                <a href="/">
+                    <div class="site-logo-container">
+                        <img src="/img/site-logo.png" alt="site-logo">
+                    </div>
+                </a>
+            </div>
+
+            <div class="header-txt">
+                <h1><%= other.page_header %></h1>
+            </div>
+
+
+            <div class="img-wrapper">
+                <img src="/img/signup-img1.png" alt="home-img1">
+            </div>
+        </div>
+
+        <div class="rightside">
+            
+            <div class="signup-form-wrapper">
+                <div class="signup-form-header">
+                    <h2><%= other.form_header %></h2>
+                </div>
+
+                <div class="singup-third-parties">
+                    <div class="third-party">
+                        <img src="/img/facebook-original-icon.png" alt="facebook-original-icon">
+                        <button id="facebook-btn"><%= other.third_party_name %> with Facebook</button>
+                    </div>
+                    <div class="third-party">
+                        <img src="/img/google-original-icon.png" alt="google-original-icon">
+                        <button><%= other.third_party_name %> with Google</button>
+                    </div>
+
+                    <div class="third-party">
+                        <img src="/img/linkedin-original-icon.png" alt="linkedin-original-icon">
+                        <button id="linkedin-btn"><%= other.third_party_name %> with LinkedIn</button>
+                    </div>
+
+                    <div class="third-party">
+                        <img src="/img/twitter-original-icon.png" alt="twitter-original-icon">
+                        <button><%= other.third_party_name %> with Twitter</button>
+                    </div>
+                </div>
+
+                <span>- OR -</span>
+
+                <div class="user-inpts">
+                    <% if(other.view == "user_signup") { %>
+                        <input type="text" placeholder="Username" autocomplete="off">
+                        <input type="email" placeholder="Email Address" autocomplete="off">
+                        <input type="password" placeholder="Password" autocomplete="off">
+                    <% } else if(other.view == "user_login") { %>
+                        <input type="text" placeholder="Username" autocomplete="off">
+                        <input type="password" placeholder="Password" autocomplete="off">
+                    <% } %>
+                </div>
+
+                <button type="submit" id="signup-btn"><%= other.form_header %></button>
+
+                <% if(other.view == "user_signup") { %>
+                    <p>Already have an account? <a href="/login">Log In</a></p>
+                <% } else if(other.view == "user_login") { %>
+                <p>Already have an account? <a href="/signup">Create Account</a></p>
+                <% } %>
+
+            </div>
+        </div>
+    </main>
+</body>
+</html>

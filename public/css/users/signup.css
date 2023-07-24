@@ -1,0 +1,154 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'DM Sans', sans-serif; 
+}
+
+body {
+    overflow: hidden;
+    min-height: 100vh;
+}
+main {
+    background-color: rgba(255, 140, 0, 0.5);
+    min-height: 100vh;
+    display: flex;
+}
+.leftside {
+    display: flex;
+    position: relative;
+    width: 40%;
+    min-height: 100%;
+    padding: 40px 30px;
+    flex-direction: column;
+}
+.site-logo-wrapper > a:hover .site-logo-container {
+    opacity: 0.7;
+}
+.site-logo-wrapper {
+    width: fit-content;
+}
+.site-logo-container {
+    border-radius: 50%;
+    display: flex;
+    padding: 5px;
+    height: fit-content;
+    width: fit-content;
+    background-color: white;
+}
+.site-logo-container > img {
+    height: 40px;
+}
+.header-txt { 
+    display: flex;
+    margin-top: 50px;
+}
+.header-txt > h1 {
+    font-weight: 600;
+}
+.img-wrapper {
+    width: 100%;
+    display: flex;
+    height: 80%;
+    margin-top: 25px;
+    align-items: center;
+    justify-content: center;
+}
+.img-wrapper > img {
+    height: 500px;
+    width: 500px;
+    object-fit: cover;
+}
+.rightside {
+    width: 60%;
+    overflow: hidden;
+    min-height: 100%;
+    border-radius: 55px 0 0 55px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    align-items: center;
+}
+.signup-form-wrapper {
+    display: flex;
+    width: 650px;
+    margin-top: 130px;
+    flex-direction: column;
+    align-items: center;
+}
+.signup-form-header {
+    display: flex;
+    width: 100%;
+}
+.singup-third-parties {
+    display: flex;
+    margin-top: 40px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 95%;
+}
+.third-party {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.third-party > button {
+    width: 250px;
+    background-color: white;
+    border-radius: 10px ;
+    padding: 0px 4px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    height: 50px;
+}
+.third-party > img {
+    height: 25px;
+    left: 10px;
+    position: absolute;
+}
+.signup-form-wrapper > span {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.user-inpts {
+    display: flex;
+    width: 95%;
+    flex-direction: column;
+}
+.user-inpts > input {
+    width: 100%;
+    outline: none;
+    margin-bottom: 25px;
+    height: 40px;
+    border: none;
+    font-size: 18px;
+    border-bottom: 0.2px solid #5f5f5f;
+}
+#facebook-btn {
+    padding-left: 25px;
+}
+#linkedin-btn {
+    padding-left: 16px;
+}
+#signup-btn {
+    padding: 10px 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    background-color: #FF9E3D;
+    width: 95%;
+}
+.signup-form-wrapper > p {
+    width: 95%;
+    margin-top: 10px;
+}
+.signup-form-wrapper > p > a {
+    text-decoration: none;
+    color: #FF9E3D;
+}

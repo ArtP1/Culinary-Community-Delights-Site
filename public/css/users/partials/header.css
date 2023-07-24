@@ -43,7 +43,7 @@
     opacity: 0.6;
 }
 .left-hd > a > img {
-    height: 30px;
+    height: 37px;
     margin-right: 5px;
 }
 .left-hd > a > span {
@@ -63,6 +63,9 @@
 }
 .left-hd > nav > a:hover {
     color: #FF9E3D  ;
+}
+.fa-solid.fa-angle-down {
+    font-size: 14px;
 }
 .img-container {
     width: 50px; 
@@ -98,6 +101,7 @@
     min-height: 56px;
     margin-right: 32px;
     min-width: 350px;
+    outline: none;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 52px;
@@ -108,9 +112,13 @@
     line-height: 1.2;
     text-transform: lowercase;
 }
+.right-hd > a {
+    text-decoration: none;
+}
 .signup-container {
     position: relative;
     display: flex;
+    align-items: center;
 }
 .signup-container > button {
     background-color: #FFA500; 
@@ -127,7 +135,7 @@
 .signup-container > img {
     position: absolute;
     right: 5px;
+    height: 26px;
     object-fit: cover;
-    height: 5px;
     display: flex;
 }
