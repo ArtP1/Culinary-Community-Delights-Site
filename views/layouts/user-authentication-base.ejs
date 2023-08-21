@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%= other.view %></title>
     <link rel="stylesheet" href="/css/users/signup.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="69941308844-ucsh0a9dm07v6m5k9evlid5pe568bppk.apps.googleusercontent.com">
 </head>
 <body>
+    <input type="text" id="view" placeholder="<%= other.view %>">
     <main>
         <div class="leftside">
             <div class="site-logo-wrapper">
@@ -44,7 +47,7 @@
                     </div>
                     <div class="third-party">
                         <img src="/img/google-original-icon.png" alt="google-original-icon">
-                        <button><%= other.third_party_name %> with Google</button>
+                        <button data-onsuccess="onSignIn"><%= other.third_party_name %> with Google</button>
                     </div>
 
                     <div class="third-party">
@@ -62,25 +65,33 @@
 
                 <div class="user-inpts">
                     <% if(other.view == "user_signup") { %>
-                        <input type="text" placeholder="Username" autocomplete="off">
-                        <input type="email" placeholder="Email Address" autocomplete="off">
-                        <input type="password" placeholder="Password" autocomplete="off">
+                        <input id="username" type="text" placeholder="Username" autocomplete="off">
+                        <input id="email" type="email" placeholder="Email Address" autocomplete="off">
+                        <input id="password" type="password" placeholder="Password" autocomplete="off">
                     <% } else if(other.view == "user_login") { %>
-                        <input type="text" placeholder="Username" autocomplete="off">
-                        <input type="password" placeholder="Password" autocomplete="off">
+                        <input id="identifier" type="text" placeholder="Username or email" autocomplete="off">
+                        <input type="password" id="password" placeholder="Password" autocomplete="off">
                     <% } %>
                 </div>
 
-                <button type="submit" id="signup-btn"><%= other.form_header %></button>
+                <% if(other.view == "user_signup") { %>
+                    <button type="submit" id="signupBtn"><%= other.form_header %></button>
+                <% } else if(other.view == "user_login") { %>
+                    <button type="submit" id="loginBtn"><%= other.form_header %></button>
+                <% } %>
+                
 
                 <% if(other.view == "user_signup") { %>
                     <p>Already have an account? <a href="/login">Log In</a></p>
                 <% } else if(other.view == "user_login") { %>
-                <p>Already have an account? <a href="/signup">Create Account</a></p>
+                    <p>Already have an account? <a href="/signup">Create Account</a></p>
                 <% } %>
 
             </div>
         </div>
     </main>
+
+
+    <script src="/js/users.js"></script>
 </body>
 </html>

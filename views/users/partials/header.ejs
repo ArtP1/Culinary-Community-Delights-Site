@@ -19,12 +19,54 @@
                     <img src="/img/search-icon.png" alt="search-icon">
                     <input type="search" placeholder="search for recipes" autocomplete="off">
                 </div>
-                <a href="/signup">
-                    <div class="signup-container">
-                        <button>Sign Up</button>
-                        <img src="/img/signup-icon.png" alt="signup-icon">
+                <% if(other.authenticated) { %>
+                    <a href="/profile">
+                        <div class="profile-container">
+                            <img src="/img/default-pfp.gif" alt="default-pfp">
+                        </div>
+                    </a>
+
+                    <div class="sub-menu-wrapper">
+                        <div class="sub-menu-content">
+                            <div class="user-info">
+                                <img src="/img/default-pfp.gif" alt="default-pfp">
+                                <h2>Jaime Palacios </h2>
+                            </div>
+                            <hr>
+
+                            <a href="" class="sub-menu-link">
+                                <img src="/img/default-pfp.gif" alt="default-pfp">
+                                <p>Edit Profile</p>
+                                <span>></span>
+                            </a>
+
+                            <a href="" class="sub-menu-link">
+                                <img src="/img/default-pfp.gif" alt="default-pfp">
+                                <p>Edit Profile</p>
+                                <span>></span>
+                            </a>
+
+                            <a href="" class="sub-menu-link">
+                                <img src="/img/default-pfp.gif" alt="default-pfp">
+                                <p>Edit Profile</p>
+                                <span>></span>
+                            </a>
+
+                            <a href="" class="sub-menu-link">
+                                <img src="/img/default-pfp.gif" alt="default-pfp">
+                                <p>Edit Profile</p>
+                                <span>></span>
+                            </a>
+                        </div>
                     </div>
-                </a>
+                <% } else { %>
+                    <a href="/signup">
+                        <div class="signup-container">
+                            <button>Sign Up</button>
+                            <img src="/img/signup-icon.png" alt="signup-icon">
+                        </div>
+                    </a>
+                <% } %>
             </div>
         </div>
     </div>

@@ -102,6 +102,7 @@
     margin-right: 32px;
     min-width: 350px;
     outline: none;
+    transition: background-color 0.5s ease;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 52px;
@@ -111,9 +112,44 @@
     font-size: 17px;
     line-height: 1.2;
     text-transform: lowercase;
+}   
+.right-hd > div:hover input{
+    background-color: #f1f1f1;
+    transition: background-color 0.5s ease;
 }
 .right-hd > a {
     text-decoration: none;
+}
+.sub-menu-wrapper {
+    position: absolute;
+    top: 100%;
+    right: 10%;
+    width: 320px;
+}
+.sub-menu-content {
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+}
+.user-info {
+    display: flex;
+    align-items: center;
+}
+.user-info > h2 {
+    font-weight: 500;
+}
+.user-info > img {
+    width: 6px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.sub-menu-content > hr {
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background: #ccc;
+    margin: 15px 0 10px;
+
 }
 .signup-container {
     position: relative;

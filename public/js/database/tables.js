@@ -322,6 +322,7 @@ function renderTableBasedOnPage() {
       renderRecipesTable();
       break;
     default:
+      window.location.href = "/admin/dashboard";
       break;
   }
 }

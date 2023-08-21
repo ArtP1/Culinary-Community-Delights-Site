@@ -1,7 +1,20 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
+const session = require('express-session');
 const server = express()
-
 require('dotenv').config()
+
+// imports
+const { 
+    HOST_PORT,
+    DB_TABLE_CATEGORIES,
+    DB_TABLE_USERS,
+    DB_TABLE_RECIPES,
+    SESSION_SECRET
+} = process.env
+
+const { queryDb } = require('./config/database/utils')
+
 server.set('view engine', 'ejs')
 server.use(express.static('public'))
 
@@ -11,14 +24,13 @@ server.use(express.urlencoded({ extended: true }))
 // middleware for parsing data in JSON
 server.use(express.json())
 
+// 
+server.use(session({ //  allow the server to store and retrieve information about a particular client's interactions with the application over multiple requests
+    secret: SESSION_SECRET, // ensures that the session data is not tampered with or modified by unauthorized parties. 
+    resave: false, // forces the session to be saved back to the session store on every request, even if the session data has not changed
+    saveUninitialized: false // reduces storage usage and improve performance.
+}))
 
-const { 
-    HOST_PORT,
-    DB_TABLE_CATEGORIES,
-    DB_TABLE_USERS,
-    DB_TABLE_RECIPES
-} = process.env
-const { queryDb } = require('./config/database/utils')
 
 
 // USER ROUTES ------------------------------------------------
@@ -27,7 +39,8 @@ server.get('/', (req, res) => { // USER HOME PAGE
 
     
     res.render('./layouts/user-base', {data: {}, 
-                                       other: {view: "user_home"}})
+                                       other: {view: "user_home", 
+                                               authenticated: req.session.authenticated}})
 })
 
 server.get('/signup', (req, res) => { // USER SIGNUP PAGE
@@ -41,6 +54,61 @@ server.get('/signup', (req, res) => { // USER SIGNUP PAGE
                                                               page_header: "Discover a treasure trove of recipes shared by food enthusiasts from around the globe"}})
 })
 
+server.post('/signup', async (req, res) => { //  USER SIGNUO | POST
+    const { username, email, password } = req.body;
+
+    try {
+        // Check if the user or email already exists
+        const userExists = await queryDb(`SELECT * FROM ${DB_TABLE_USERS} WHERE username = ? OR email = ?`, [username, email]);
+
+        if (userExists.length > 0) {
+            return res.status(409).send({ message: "User already exists",
+                                          success: false });
+        }
+
+        // Generate a salt and hash the password
+        const nonceSalt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, nonceSalt);
+
+        const todaysDate = new Date();
+
+        // Insert the new user into the database
+        await queryDb(`INSERT INTO ${DB_TABLE_USERS} 
+                       (username, email, password, last_login)
+                       VALUES(?, ?, ?, ?)`, [username, email, hashedPassword, todaysDate]);
+
+        // Set session data
+        req.session.authenticated = true;
+
+        req.session.user = {
+            username: username,
+            email: email,
+            dateCreated: "",
+            firstName: "",
+            lastName: "",
+            profilePicture: "",
+            bio: "",
+            country: "",
+            followersCount: 0,
+            followingCount: 0,
+            favoritesCount: 0,
+            savedRecipesCount: 0,
+            createdRecipesCount: 0,
+            lastLoginDate: todaysDate,
+            lastUpdatedDate: ""
+        };
+
+        console.log("User added to database")
+
+        return res.send({ message: `Welcome ${username}!`,
+                          success: true });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).send({ message: "Something went wrong",
+                                      success: false });
+    }
+});
+
 server.get('/login', (req, res) => { // USER LOGIN PAGE
 
 
@@ -50,6 +118,57 @@ server.get('/login', (req, res) => { // USER LOGIN PAGE
                                                               third_party_name: "Sign in",
                                                               view: "user_login",
                                                               page_header: "Discover a treasure trove of recipes shared by food enthusiasts from around the globe"}})
+})
+
+server.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+
+    // Input validation
+    if (!username || !password) {
+        return res.status(400).send({ message: "Username and password are required.", success: false });
+    }
+
+    try {
+        const authUser = await queryDb(`SELECT * FROM ${DB_TABLE_USERS} WHERE username = ?`, [username]);
+
+        if (authUser.length === 0) {
+            return res.status(401).send({ message: "Invalid username or password", success: false });
+        }
+
+        const hashedPassword = authUser[0].password;
+        const isMatch = await bcrypt.compare(password, hashedPassword);
+
+        if (isMatch) {
+            req.session.authenticated = true;
+
+            req.session.user = {
+                username: authUser[0].username,
+                email: authUser[0].email,
+                dateCreated: authUser[0].created_at,
+                firstName: authUser[0].first_name,
+                lastName: authUser[0].last_name,
+                profilePicture: authUser[0].profile_picture,
+                bio: authUser[0].biography,
+                country: authUser[0].country,
+                followersCount: authUser[0].followers_count,
+                followingCount: authUser[0].following_count,
+                favoritesCount: authUser[0].favorites_count,
+                savedRecipesCount: authUser[0].saved_recipes_count,
+                createdRecipesCount: authUser[0].created_recipes_count,
+                lastLoginDate: authUser[0].last_login,
+                lastUpdatedDate: authUser[0].last_updated
+            };
+
+            console.log('Authenticated user');
+            
+            return res.status(200).send({ message: "Authentication successful.", success: true });
+        } else {
+            return res.status(401).send({ message: "Invalid username or password", success: false });
+        }
+    } catch (err) {
+        console.error("Error during authentication:", err);
+        return res.status(500).send({ message: "Internal server error", success: false });
+    }
 })
 
 server.get('/about', (req, res) => { 

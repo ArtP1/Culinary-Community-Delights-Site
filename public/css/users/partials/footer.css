@@ -43,27 +43,32 @@ footer {
     display: flex;
     flex-direction: column;
 }
-.inpt_email > div {
+.email-input-container {
     display: flex;
     align-items: center;
     width: fit-content;
     position: relative;
 }
-.inpt_email > div > img {
-    position: absolute;
-    height: 50px;
+.email-input-container:hover > input {
+    background-color: #f1f1f1;
+    transition: background-color 0.5s ease;
 }
-.inpt_email > div > input {
+.email-input-container > img {
+    position: absolute;
+    height: 20px;
+}
+.email-input-container > input {
     width: 100%;
     font-size: 18px;
-    min-height: 69px;
+    transition: background-color 0.5s ease;
+    min-height: 35px;
     padding-left: 17%;
     border-style: none;
     border-width: 0px;
     border-color: #040404;
     background-color: #fafafa;
 }
-.inpt_email > div > button {
+.email-input > button {
     height: auto;
     background-color: black;
     color: white;
