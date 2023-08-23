@@ -1,17 +1,10 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
-const server = express()
-require('dotenv').config()
-
-// imports
-const { 
-    HOST_PORT,
-    DB_TABLE_CATEGORIES,
-    DB_TABLE_USERS,
-    DB_TABLE_RECIPES,
-    SESSION_SECRET
-} = process.env
+const passport = require('passport');
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
+const server = express();
+require('dotenv').config();
 
 const { queryDb } = require('./config/database/utils')
 
@@ -26,12 +19,91 @@ server.use(express.json())
 
 // 
 server.use(session({ //  allow the server to store and retrieve information about a particular client's interactions with the application over multiple requests
-    secret: SESSION_SECRET, // ensures that the session data is not tampered with or modified by unauthorized parties. 
+    secret: process.env.SESSION_SECRET, // ensures that the session data is not tampered with or modified by unauthorized parties. 
     resave: false, // forces the session to be saved back to the session store on every request, even if the session data has not changed
     saveUninitialized: false // reduces storage usage and improve performance.
 }))
 
 
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/oauth2/redirect/google",
+    scope: ['profile', 'email'],
+    state: true
+  },
+  async function verify(accessToken, refreshToken, profile, cb) {
+    try {
+        const userExists = await queryDb(`SELECT * FROM ${process.env.DB_TABLE_USERS} WHERE email = ?`, [profile.emails[0].value]);
+        const todaysDate = new Date();
+        
+        if(userExists.length > 0) {
+            console.log("User already exists");
+
+            const user = {
+                username: userExists[0].username,
+                email: userExists[0].email,
+                dateCreated: userExists[0].created_at,
+                firstName: userExists[0].first_name,
+                lastName: userExists[0].last_name,
+                profilePicture: userExists[0].profile_picture,
+                bio: userExists[0].biography,
+                country: userExists[0].country,
+                followersCount: userExists[0].followers_count,
+                followingCount: userExists[0].following_count,
+                favoritesCount: userExists[0].favorites_count,
+                savedRecipesCount: userExists[0].saved_recipes_count,
+                createdRecipesCount: userExists[0].created_recipes_count,
+                lastLoginDate: todaysDate,
+                lastUpdatedDate: userExists[0].last_updated
+            };
+            
+
+            return cb(null, user);
+        } else {
+            console.log("User does not exist");
+            
+            const newUser = await queryDb(`INSERT INTO ${process.env.DB_TABLE_USERS} 
+                                           (username, email, first_name, last_name, profile_picture, last_login) 
+                                           VALUES(?, ?, ?, ?, ?, ?)`, [profile.displayName, profile.emails[0].value, profile.name.givenName, profile.name.familyName, profile.photos[0].value, todaysDate]);
+
+            const user = {
+                username: profile.displayName,
+                email: profile.emails[0].value,
+                dateCreated: todaysDate,
+                firstName: profile.name.givenName,
+                lastName: profile.name.familyName,
+                profilePicture: profile.photos[0].value,
+                bio: null,
+                country: null,
+                followersCount: 0,
+                followingCount: 0,
+                favoritesCount: 0,
+                savedRecipesCount: 0,
+                createdRecipesCount: 0,
+                lastLoginDate: todaysDate,
+                lastUpdatedDate: null
+            }
+
+            return cb(null, user);
+        }
+    } catch(err) {
+        console.log(err);
+        return cb(err);
+    }
+  }
+));
+
+passport.serializeUser((user, done) => {
+    done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+    done(null, user);
+});
+
+server.use(passport.initialize());
+server.use(passport.session());
 
 // USER ROUTES ------------------------------------------------
 server.get('/', (req, res) => { // USER HOME PAGE
@@ -42,6 +114,18 @@ server.get('/', (req, res) => { // USER HOME PAGE
                                        other: {view: "user_home", 
                                                authenticated: req.session.authenticated}})
 })
+
+server.get('/oauth/google', passport.authenticate('google')); 
+
+server.get('/oauth2/redirect/google', 
+    passport.authenticate('google', { failureRedirect: ["/login"]}), 
+    (req, res) => {
+        req.session.authenticated = true;
+        req.session.user = req.user; 
+
+        res.redirect('/');
+    }
+);
 
 server.get('/signup', (req, res) => { // USER SIGNUP PAGE
 
@@ -59,7 +143,7 @@ server.post('/signup', async (req, res) => { //  USER SIGNUO | POST
 
     try {
         // Check if the user or email already exists
-        const userExists = await queryDb(`SELECT * FROM ${DB_TABLE_USERS} WHERE username = ? OR email = ?`, [username, email]);
+        const userExists = await queryDb(`SELECT * FROM ${process.env.DB_TABLE_USERS} WHERE username = ? OR email = ?`, [username, email]);
 
         if (userExists.length > 0) {
             return res.status(409).send({ message: "User already exists",
@@ -73,7 +157,7 @@ server.post('/signup', async (req, res) => { //  USER SIGNUO | POST
         const todaysDate = new Date();
 
         // Insert the new user into the database
-        await queryDb(`INSERT INTO ${DB_TABLE_USERS} 
+        await queryDb(`INSERT INTO ${process.env.DB_TABLE_USERS} 
                        (username, email, password, last_login)
                        VALUES(?, ?, ?, ?)`, [username, email, hashedPassword, todaysDate]);
 
@@ -129,7 +213,7 @@ server.post('/login', async (req, res) => {
     }
 
     try {
-        const authUser = await queryDb(`SELECT * FROM ${DB_TABLE_USERS} WHERE username = ?`, [username]);
+        const authUser = await queryDb(`SELECT * FROM ${process.env.DB_TABLE_USERS} WHERE username = ?`, [username]);
 
         if (authUser.length === 0) {
             return res.status(401).send({ message: "Invalid username or password", success: false });
@@ -178,7 +262,7 @@ server.get('/about', (req, res) => {
 })
 
 server.get('/recipes', (req, res) => {
-    let recipes = `SELECT * FROM ${DB_TABLE_RECIPES} WHERE is_active = 1`
+    let recipes = `SELECT * FROM ${process.env.DB_TABLE_RECIPES} WHERE is_active = 1`
     
     res.render('./layouts/user-base', {data: {}, 
                                        other: {view: "user_recipes"}})
@@ -262,13 +346,13 @@ server.get('/api/categories/:types', async (req, res) => {
     try {
         switch(types) {
             case "general":
-                categories = await queryDb(`SELECT * FROM ${DB_TABLE_CATEGORIES} WHERE is_general = 1`)
+                categories = await queryDb(`SELECT * FROM ${process.env.DB_TABLE_CATEGORIES} WHERE is_general = 1`)
                 break;
             case "active":
-                categories = await queryDb(`SELECT * FROM ${DB_TABLE_CATEGORIES} WHERE is_active = 1`)
+                categories = await queryDb(`SELECT * FROM ${process.env.DB_TABLE_CATEGORIES} WHERE is_active = 1`)
                 break;
             default:
-                categories = await queryDb(`SELECT * FROM ${DB_TABLE_CATEGORIES}`)
+                categories = await queryDb(`SELECT * FROM ${process.env.DB_TABLE_CATEGORIES}`)
                 break;
         }
 
@@ -288,13 +372,13 @@ server.get('/api/:type', async (req, res) => {
     try {
         switch(type) {
             case 'users':
-                dataType = await queryDb(`SELECT * FROM ${DB_TABLE_USERS}`)
+                dataType = await queryDb(`SELECT * FROM ${process.env.DB_TABLE_USERS}`)
                 break;
             case 'categories':
-                dataType = await queryDb(`SELECT * FROM ${DB_TABLE_CATEGORIES}`)
+                dataType = await queryDb(`SELECT * FROM ${process.env.DB_TABLE_CATEGORIES}`)
                 break;
             case "recipes":
-                dataType = await queryDb(`SELECT * FROM ${DB_TABLE_RECIPES}`)
+                dataType = await queryDb(`SELECT * FROM ${process.env.DB_TABLE_RECIPES}`)
                 break;
             default:
                 throw new Error('Invalid data type');
@@ -331,7 +415,7 @@ server.get('/api/:type/update', async (req, res) => {
         
         const userId = req.params.id;
 
-        const updatedUser = await queryDb(`UPDATE ${DB_TABLE_USERS}
+        const updatedUser = await queryDb(`UPDATE ${process.env.DB_TABLE_USERS}
                                            SET username = ?, email = ?, password = ?, first_name = ?, 
                                            last_name = ?, profile_picture = ?, biography = ?, country = ?, last_updated = ?
                                            WHERE id = ?`, [username, email, password, first_name, last_name, profile_picture, biography, country, last_updated, userId])
@@ -344,13 +428,13 @@ server.get('/api/:type/update', async (req, res) => {
     try {
         switch(type) {
             case 'users':
-                dataType = await queryDb(`UPDATE ${DB_TABLE_USERS}
+                dataType = await queryDb(`UPDATE ${process.env.DB_TABLE_USERS}
                                           SET username = ?, email = ?, password = ?, first_name = ?, 
                                           last_name = ?, profile_picture = ?, biography = ?, country = ?, last_updated = ?
                                           WHERE id = ?`, [username, email, password, first_name, last_name, profile_picture, biography, country, last_updated, userId])
                 break;
             case 'categories':
-                dataType = await queryDb(`DELETE FROM ${DB_TABLE_CATEGORIES}
+                dataType = await queryDb(`DELETE FROM ${process.env.DB_TABLE_CATEGORIES}
                                           WHERE id = ?`, [rowId])
                 break;
             default:
@@ -371,11 +455,11 @@ server.get('/api/:type/delete', async (req, res) => {
     try {
         switch(type) {
             case 'users':
-                dataType = await queryDb(`DELETE FROM ${DB_TABLE_USERS}
+                dataType = await queryDb(`DELETE FROM ${process.env.DB_TABLE_USERS}
                                           WHERE id = ?`, [rowId])
                 break;
             case 'categories':
-                dataType = await queryDb(`DELETE FROM ${DB_TABLE_CATEGORIES}
+                dataType = await queryDb(`DELETE FROM ${process.env.DB_TABLE_CATEGORIES}
                                           WHERE id = ?`, [rowId])
                 break;
             default:
@@ -389,6 +473,6 @@ server.get('/api/:type/delete', async (req, res) => {
 });
 
 
-server.listen(HOST_PORT, () => {
-    console.log(`Server is running on port http://localhost:${HOST_PORT}`)
+server.listen(process.env.HOST_PORT, () => {
+    console.log(`Server is running on port http://localhost:${process.env.HOST_PORT}`)
 });

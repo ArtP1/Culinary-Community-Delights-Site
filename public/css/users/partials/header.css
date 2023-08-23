@@ -83,6 +83,7 @@
 .right-hd {
     display: flex;
     align-items: center;
+    background-color: red;
 }
 .right-hd > div {
     display: flex;
@@ -123,8 +124,15 @@
 .sub-menu-wrapper {
     position: absolute;
     top: 100%;
-    right: 10%;
-    width: 320px;
+    right: 0;
+    display: none;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sub-menu-wrapper.active {
+    display: block;
 }
 .sub-menu-content {
     background-color: white;
@@ -174,4 +182,7 @@
     height: 26px;
     object-fit: cover;
     display: flex;
+}
+.profile-container > img{
+    background-color: blue;
 }

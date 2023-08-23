@@ -89,8 +89,14 @@ main {
 .third-party {
     position: relative;
     display: flex;
+    text-decoration: none;
     align-items: center;
     margin-bottom: 15px;
+}
+.third-party > img {
+    height: 25px;
+    left: 10px;
+    position: absolute;
 }
 .third-party > button {
     width: 250px;
@@ -101,11 +107,6 @@ main {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border: none;
     height: 50px;
-}
-.third-party > img {
-    height: 25px;
-    left: 10px;
-    position: absolute;
 }
 .signup-form-wrapper > span {
     margin-top: 30px;

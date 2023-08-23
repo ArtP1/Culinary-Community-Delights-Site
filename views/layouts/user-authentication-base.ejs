@@ -8,8 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="69941308844-ucsh0a9dm07v6m5k9evlid5pe568bppk.apps.googleusercontent.com">
 </head>
 <body>
     <input type="text" id="view" placeholder="<%= other.view %>">
@@ -41,24 +39,25 @@
                 </div>
 
                 <div class="singup-third-parties">
-                    <div class="third-party">
+                    <a href="#" class="third-party">
                         <img src="/img/facebook-original-icon.png" alt="facebook-original-icon">
                         <button id="facebook-btn"><%= other.third_party_name %> with Facebook</button>
-                    </div>
-                    <div class="third-party">
-                        <img src="/img/google-original-icon.png" alt="google-original-icon">
-                        <button data-onsuccess="onSignIn"><%= other.third_party_name %> with Google</button>
-                    </div>
+                    </a>
 
-                    <div class="third-party">
+                   <a href="oauth/google" class="third-party">
+                            <img src="/img/google-original-icon.png" alt="google-original-icon">
+                            <button><%= other.third_party_name %> with Google</button>
+                   </a>
+
+                    <a href="#" class="third-party">
                         <img src="/img/linkedin-original-icon.png" alt="linkedin-original-icon">
                         <button id="linkedin-btn"><%= other.third_party_name %> with LinkedIn</button>
-                    </div>
+                    </a>
 
-                    <div class="third-party">
+                    <a href="#" class="third-party">
                         <img src="/img/twitter-original-icon.png" alt="twitter-original-icon">
                         <button><%= other.third_party_name %> with Twitter</button>
-                    </div>
+                    </a>
                 </div>
 
                 <span>- OR -</span>
