@@ -4,12 +4,12 @@
             <div class="left-hd">
                 <a href="/">
                     <img src="/img/site-logo.png" alt="site-logo">
-                    <span>Delights</span>
+                    <span>delights</span>
                 </a>
                 <nav>
-                    <a href="/">home</a>
                     <a href="/about">about</a>
                     <a href="/recipes">recipes</a>
+                    <a href="/feed">feed</a>
                     <a href="/community">pages <i class="fa-solid fa-angle-down"></i></a>
                 </nav>
             </div>
@@ -20,9 +20,11 @@
                     <input type="search" placeholder="search for recipes" autocomplete="off">
                 </div>
                 <% if(other.authenticated) { %>
-                    <div class="profile-container">
-                        <img src="/img/default-pfp.gif" alt="default-pfp">
-                    </div>
+                    <a href="/profile">
+                        <div class="profile-container">
+                            <img src="/img/default-pfp.gif" alt="default-pfp">
+                        </div>
+                    </a>
 
                     <div class="sub-menu-wrapper">
                         <div class="sub-menu-content">

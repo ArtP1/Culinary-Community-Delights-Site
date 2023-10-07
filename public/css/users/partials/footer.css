@@ -37,6 +37,8 @@ footer {
 }
 .fcf_left > p {
     width: 80%;
+    font-size: 18px;
+    color: #777777;
     line-height: 30px;
 }
 .fcf_right {
@@ -107,7 +109,8 @@ footer {
     text-decoration: none;
 }
 .fxf_categories > a:hover .category_details > h5 {
-    color: #FF9E3D  ;
+    color: #FF9E3D;
+    transition: color 0.3s ease-in-out;
 }
 .fxf-category {
     display: flex;
@@ -136,14 +139,12 @@ footer {
 .category_details > h5 {
     font-size: 18px;
     color: black;
-    transition: color 0.4s ease-in-out;
-    font-weight: 600;
+    font-weight: 700;
 }
 .category_details > p {
-    /* width: 120px; */
-    font-size: 18px;
+    font-size: 16.5px;
     line-height: 30px;
-    color: #5f5f5f;
+    color: #777777;
 }
 .fcs_right {
     display: flex;
@@ -165,15 +166,19 @@ footer {
 }
 .menu_container > a {
     margin-bottom: 16px;
-    color: black;
+    color: #777777;
     text-decoration: none;
     font-size: 18px;
 }
 .fst-content {
-    padding-top: 32px;
+    padding-top: 40px;
     padding-bottom: 25px;
     display: flex;
     justify-content: space-between;
+}
+.fst-left > p {
+    font-size: 18px;
+    color: #777777;
 }
 .fst-right-socials {
     display: flex;
@@ -183,7 +188,7 @@ footer {
     margin-right: 10px;
 }
 .fst-right-socials > a > img {
-     height: 30px;
+     height: 35px;
 }
 .fst-right-socials > a:hover .def-img {
     display: none;

@@ -8,8 +8,8 @@
     max-width: 1220px;
     margin-right: auto;
     margin-left: auto;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 38px;
+    padding-bottom: 38px;
     background-color: #fff;
     box-shadow: 0 6px 28px 0 rgba(0, 0, 0, 0.06);
 }
@@ -18,7 +18,7 @@
     margin-right: auto;
     margin-left: auto;
     padding-right: 32px;
-    padding-left: 32px;
+    padding-left: 25px;
 }
 .header-wrapper {
     display: flex;
@@ -43,7 +43,7 @@
     opacity: 0.6;
 }
 .left-hd > a > img {
-    height: 37px;
+    height: 30px;
     margin-right: 5px;
 }
 .left-hd > a > span {
@@ -82,8 +82,8 @@
 
 .right-hd {
     display: flex;
+    height: 56px;
     align-items: center;
-    background-color: red;
 }
 .right-hd > div {
     display: flex;
@@ -94,16 +94,15 @@
 .right-hd > div > img {
     cursor: pointer;
     position: absolute;
-    height: 30px;
+    height: 25px;
     margin-left: 15px;
     padding-top: 2px;
 }
 .right-hd > div > input {
-    min-height: 56px;
     margin-right: 32px;
     min-width: 350px;
     outline: none;
-    transition: background-color 0.5s ease;
+    transition: background-color 0.3s ease;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 52px;
@@ -116,7 +115,7 @@
 }   
 .right-hd > div:hover input{
     background-color: #f1f1f1;
-    transition: background-color 0.5s ease;
+    transition: background-color 0.45s ease;
 }
 .right-hd > a {
     text-decoration: none;
@@ -124,15 +123,8 @@
 .sub-menu-wrapper {
     position: absolute;
     top: 100%;
-    right: 0;
-    display: none;
-    background-color: white;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.sub-menu-wrapper.active {
-    display: block;
+    right: 10%;
+    width: 320px;
 }
 .sub-menu-content {
     background-color: white;
@@ -162,16 +154,17 @@
 .signup-container {
     position: relative;
     display: flex;
+    height: 56px;
     align-items: center;
 }
 .signup-container > button {
     background-color: #FFA500; 
     color: #fff; 
     border: none;
-    padding: 10px 0px;
     padding-left: 20px;
-    padding-right: 40px;
-    font-size: 16px;
+    height: 100%;
+    padding-right: 45px;
+    font-size: 18px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -179,10 +172,8 @@
 .signup-container > img {
     position: absolute;
     right: 5px;
+    padding-right: 10px;
     height: 26px;
     object-fit: cover;
     display: flex;
-}
-.profile-container > img{
-    background-color: blue;
 }

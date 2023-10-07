@@ -28,69 +28,16 @@ server.use(session({ //  allow the server to store and retrieve information abou
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/oauth2/redirect/google",
-    scope: ['profile', 'email'],
-    state: true
+    callbackURL: "http://localhost:3000/auth/google/callback"
   },
-  async function verify(accessToken, refreshToken, profile, cb) {
-    try {
-        const userExists = await queryDb(`SELECT * FROM ${process.env.DB_TABLE_USERS} WHERE email = ?`, [profile.emails[0].value]);
-        const todaysDate = new Date();
-        
-        if(userExists.length > 0) {
-            console.log("User already exists");
+  (accessToken, refreshToken, profile, cb) => {
 
-            const user = {
-                username: userExists[0].username,
-                email: userExists[0].email,
-                dateCreated: userExists[0].created_at,
-                firstName: userExists[0].first_name,
-                lastName: userExists[0].last_name,
-                profilePicture: userExists[0].profile_picture,
-                bio: userExists[0].biography,
-                country: userExists[0].country,
-                followersCount: userExists[0].followers_count,
-                followingCount: userExists[0].following_count,
-                favoritesCount: userExists[0].favorites_count,
-                savedRecipesCount: userExists[0].saved_recipes_count,
-                createdRecipesCount: userExists[0].created_recipes_count,
-                lastLoginDate: todaysDate,
-                lastUpdatedDate: userExists[0].last_updated
-            };
-            
+    // Save user information to session
+    // req.session.user = user;
+    console.log(profile);
 
-            return cb(null, user);
-        } else {
-            console.log("User does not exist");
-            
-            const newUser = await queryDb(`INSERT INTO ${process.env.DB_TABLE_USERS} 
-                                           (username, email, first_name, last_name, profile_picture, last_login) 
-                                           VALUES(?, ?, ?, ?, ?, ?)`, [profile.displayName, profile.emails[0].value, profile.name.givenName, profile.name.familyName, profile.photos[0].value, todaysDate]);
-
-            const user = {
-                username: profile.displayName,
-                email: profile.emails[0].value,
-                dateCreated: todaysDate,
-                firstName: profile.name.givenName,
-                lastName: profile.name.familyName,
-                profilePicture: profile.photos[0].value,
-                bio: null,
-                country: null,
-                followersCount: 0,
-                followingCount: 0,
-                favoritesCount: 0,
-                savedRecipesCount: 0,
-                createdRecipesCount: 0,
-                lastLoginDate: todaysDate,
-                lastUpdatedDate: null
-            }
-
-            return cb(null, user);
-        }
-    } catch(err) {
-        console.log(err);
-        return cb(err);
-    }
+    // Call the callback function with the user object
+    return cb(null, profile);
   }
 ));
 
@@ -115,17 +62,14 @@ server.get('/', (req, res) => { // USER HOME PAGE
                                                authenticated: req.session.authenticated}})
 })
 
-server.get('/oauth/google', passport.authenticate('google')); 
+server.get('/auth/google', 
+    passport.authenticate('google', { scope: ["https://www.googleapis.com/auth/plus.login"] })
+); 
 
-server.get('/oauth2/redirect/google', 
-    passport.authenticate('google', { failureRedirect: ["/login"]}), 
-    (req, res) => {
-        req.session.authenticated = true;
-        req.session.user = req.user; 
-
+server.get('/auth/google/callback', 
+    passport.authenticate('google', { failureRedirect: ["/login"]}), (req, res) => {
         res.redirect('/');
-    }
-);
+});
 
 server.get('/signup', (req, res) => { // USER SIGNUP PAGE
 
