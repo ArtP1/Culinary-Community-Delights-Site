@@ -4,15 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random</title>
+    <title>Delights</title>
+    <link rel="shortcut icon" type="x-icon" href="/img/site-logo.png">
     <link rel="stylesheet" href="/css/users/partials/header.css">
-    <link rel="stylesheet" href="/css/users/home.css">
+    <link rel="stylesheet" href="/css/users/partials/footer.css">
+    <link rel="stylesheet" href="/css/users/components.css">
+    <link rel="stylesheet" href="/css/users/styles.css">
+    
+
+    <% if(other.view == "user_recipes") { %> 
+
+        <link rel="stylesheet" href="/css/users/recipes.css">
+
+    <% } else if(other.view == "user_about") { %>
+
+        <link rel="stylesheet" href="/css/users/about.css">
+    
+    <% } else if(other.view == "community") { %>
+
+        <link rel="stylesheet" href="/css/users/community.css">
+
+    <% } else { %>
+
+        <link rel="stylesheet" href="/css/users/home.css">
+        
+    <% } %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/users/partials/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> -->
 </head>
 <body>
     <%- include('../users/partials/header.ejs') %>
@@ -24,11 +44,7 @@
         <!-- This is where the content of a specific page will be rendered -->
         <main>
             <!-- Conditionals -->
-            <% if(other.view == "user_home") { %> 
-
-                <%- include('../users/home.ejs') %>
-
-            <% } else if(other.view == "user_recipes") { %> 
+            <% if(other.view == "user_recipes") { %> 
 
                 <%- include('../users/recipes.ejs') %>
 
