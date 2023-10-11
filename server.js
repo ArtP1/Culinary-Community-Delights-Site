@@ -205,6 +205,11 @@ server.get('/about', (req, res) => {
                                        other: {view: "user_about"}})
 })
 
+server.get('/contact', (req, res) => {
+    res.render('./layouts/user-base', {data: {},
+                                       other: {view: "contact"}})
+})
+
 server.get('/recipes', (req, res) => {
     let recipes = `SELECT * FROM ${process.env.DB_TABLE_RECIPES} WHERE is_active = 1`
     

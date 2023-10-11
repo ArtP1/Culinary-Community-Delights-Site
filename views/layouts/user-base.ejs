@@ -20,6 +20,10 @@
 
         <link rel="stylesheet" href="/css/users/about.css">
     
+    <% } else if(other.view == "contact") { %>
+
+        <link rel="stylesheet" href="/css/users/contact.css">
+
     <% } else if(other.view == "community") { %>
 
         <link rel="stylesheet" href="/css/users/community.css">
@@ -52,6 +56,10 @@
 
                 <%- include('../users/about.ejs') %>
             
+            <% } else if(other.view == "contact") { %>
+                
+                <%- include('../users/contact.ejs') %>
+
             <% } else if(other.view == "community") { %>
 
                 <%- include('../users/community.ejs') %>

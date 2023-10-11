@@ -1,4 +1,6 @@
 // Variables
+var view = document.getElementById('page').value;
+console.log(view);
 const signupBtn = document.getElementById('signupBtn');
 const loginBtn = document.getElementById('loginBtn');
 
@@ -7,6 +9,24 @@ const loginBtn = document.getElementById('loginBtn');
 document.addEventListener('DOMContentLoaded', () => {
     const signupBtn = document.getElementById('signupBtn');
     const loginBtn = document.getElementById('loginBtn');
+    var latestRecipeDescrip = document.querySelectorAll('.latest_recipes .lat_recipe_dscrp > p');
+    console.log(latestRecipeDescrip);
+    switch(view) {
+        case 'user_recipes':
+            latestRecipeDescrip.forEach(function(description) {
+                var text = description.textContent;
+                console.log(text.length);
+                if (text.length > 72) {
+                    var truncatedText = text.slice(0, 71) + "...";
+        
+                    description.textContent = truncatedText;
+                }
+            });
+
+            break;
+        default:
+            break;
+    };
 
     if (signupBtn) {
         signupBtn.addEventListener('click', signup);
@@ -15,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (loginBtn) {
         loginBtn.addEventListener('click', login);
     }
+
 });
 
 // Authentication Functions

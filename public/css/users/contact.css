@@ -1,0 +1,101 @@
+.first_sect {
+    display: flex;
+    flex-direction: column;
+}
+.partial_backgnd {
+    display: flex;
+    height: 665px;
+    background-color: rgba(255, 140, 0, 0.08);
+}
+.contact_form_container {
+    display: flex;
+    padding-bottom: 550px;
+    align-items: center;
+    flex-direction: column;
+}
+.contact_form_wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    width: 1220px; 
+}
+.contact_form {
+    display: flex;
+    position: absolute;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.06);
+    background-color: white;
+    padding: 80px 117px;
+    max-width: 780px;
+    top: -25rem;
+}
+.contact_form > form {
+    width: 504px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+.form_title {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.form_title > h1 {
+    margin-bottom: 24px;
+    font-size: 52px;
+    font-weight: 500;
+}
+.form_title > p {
+    width: 75%;
+    color: #777777;
+    font-size: 18px;
+}
+.contact_form_inputs {
+    display: flex;
+    margin-top: 48px;
+    margin-bottom: 48px;
+    flex-direction: column;
+}
+.contact_form_inputs > textarea {
+    min-height: 133px;
+    padding: 20px 20px 0px 20px;
+    border: none;
+    font-size: 18px;
+    resize: none;
+    background-color: #fafafa;
+    outline: none;
+}
+.smaller_form_inputs {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.smaller_form_inputs > input {
+    min-height: 38px;
+    padding: 12.5px 24px;
+    border: none;
+    background-color: #fafafa;
+    color: black;
+    font-size: 18px;
+    margin-bottom: 25px;
+    outline: none;
+}
+.contact_btn {
+    width: fit-content;
+}
+
+.second_sect {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contact_types_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1220px; 
+}
+.contact_types_header {
+
+}
