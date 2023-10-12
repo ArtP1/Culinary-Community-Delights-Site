@@ -1,3 +1,13 @@
+/*
+
+  Copyright © 2023 Jaime Arturo Palacios Estrada. All rights reserved.
+
+  The content and images on this website are protected by copyright law. 
+  You may not reproduce, distribute, or transmit any part of this website or its 
+  content in any form without our written permission.
+  
+*/
+
 .first_sect {
     display: flex;
     flex-direction: column;
@@ -93,9 +103,125 @@
 .contact_types_wrapper {
     display: flex;
     flex-direction: column;
+    /* background-color: red; */
     align-items: center;
     width: 1220px; 
+    padding-bottom: 140px;
 }
 .contact_types_header {
+    text-align: center;
+    display: flex;
+    width: 594px;
+    align-items: center;
+    flex-direction: column;
+}
+.contact_types_header > h2{
+    margin-bottom: 22px;
+    font-size: 32px;
+    font-weight: 500;
+}
+.contact_types_header > p {
+    /* width: 80%; */
+    color: #777777;
+    font-size: 18px;
+}
+.contact_types {
+    display: flex;
+    margin-top: 38px;
+    justify-content: space-between;
+}
+.contact_type {
+    margin-right: 5px;
+    width: 407px;
+    height: 258px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.contact_type.center {
+    border-right: 1px solid #bfbfbf;
+    border-left: 1px solid #bfbfbf;
+}
+.contact_type_img {
+    border-radius: 50%;
+    display: flex;
+    width: fit-content;
+    padding: 17px 17px;
+    background-color: rgba(255, 140, 0, 0.08);;
+    margin-bottom: 32px;
+}
+.contact_type_img > img {
+    height: 65px;
+    width: 65px;
+    object-fit: contain;
+}
+.contact_type > h3 {
+    margin-top: 0px;
+    margin-bottom: 16px;
+    font-size: 26px;
+    font-weight: 500
+}
+.contact_type > a {
+    font-size: 18px;
+    color: #777777;
+    text-decoration: none;
+}
+.ct {
+    width: 15%;
+    margin-top: 25px;
+}
 
+.third_sect {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.left_img {
+    display: flex;
+    width: 45.5%;
+}
+.left_img > img {
+    width: 100%;
+    height: 900px;
+    object-fit: cover;
+}
+.right_questions_container {
+    width: 55.5%;
+    height: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 140, 0, 0.08);
+}
+.right_questions_content {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+.right_questions_content > h2 {
+    font-size: 32px;
+    margin-top: 16px;
+    font-weight: 500;
+}
+.freq_questions_container {
+    display: flex;
+    margin-top: 48px;
+    flex-direction: column;
+    width: 806px;
+}
+.question {
+    background-color: white;
+    padding: 32px;
+    cursor: pointer;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.06);
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+}
+.question > h4 {
+    font-size: 22px;
+    font-weight: 500;
+}
+.question >  img {
+    height: 30px;
 }

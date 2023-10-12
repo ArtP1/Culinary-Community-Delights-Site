@@ -1,3 +1,14 @@
+/*
+
+  Copyright © 2023 Jaime Arturo Palacios Estrada. All rights reserved.
+
+  The content and images on this website are protected by copyright law. 
+  You may not reproduce, distribute, or transmit any part of this website or its 
+  content in any form without our written permission.
+  
+*/
+
+
 const express = require('express');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
