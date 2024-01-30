@@ -7,8 +7,6 @@
   content in any form without our written permission.
   
 */
-
-
 const express = require('express');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
@@ -218,7 +216,7 @@ server.get('/about', (req, res) => {
 
 server.get('/contact', (req, res) => {
     res.render('./layouts/user-base', {data: {},
-                                       other: {view: "contact"}})
+                                       other: {view: "user_contact"}})
 })
 
 server.get('/recipes', (req, res) => {
@@ -235,10 +233,10 @@ server.get('/recipes/:category', (req, res) => {
                                        other: {view: "user_recipes"}})
 })
 
-server.get('/community', (req, res) => {
+server.get('/feed', (req, res) => {
 
     res.render('./layouts/user-base', {data: {},
-                                       other: {view: "user_community"}})
+                                       other: {view: "user_feed"}})
 })
 
 

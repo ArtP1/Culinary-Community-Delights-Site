@@ -26,19 +26,20 @@
 
         <link rel="stylesheet" href="/css/users/about.css">
     
-    <% } else if(other.view == "contact") { %>
+    <% } else if(other.view == "user_contact") { %>
 
         <link rel="stylesheet" href="/css/users/contact.css">
 
-    <% } else if(other.view == "community") { %>
+    <% } else if(other.view == "user_feed") { %>
 
-        <link rel="stylesheet" href="/css/users/community.css">
+        <link rel="stylesheet" href="/css/users/feed.css">
 
     <% } else { %>
 
         <link rel="stylesheet" href="/css/users/home.css">
         
     <% } %>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -62,13 +63,13 @@
 
                 <%- include('../users/about.ejs') %>
             
-            <% } else if(other.view == "contact") { %>
+            <% } else if(other.view == "user_contact") { %>
                 
                 <%- include('../users/contact.ejs') %>
 
-            <% } else if(other.view == "community") { %>
+            <% } else if(other.view == "user_feed") { %>
 
-                <%- include('../users/community.ejs') %>
+                <%- include('../users/feed.ejs') %>
 
             <% } else { %>
 
